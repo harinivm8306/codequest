@@ -1,0 +1,73 @@
+{
+  "id": "ab_pmjay_vay_vandana",
+  "level": "central",
+  "state": null,
+  "category": "health",
+  "benefit_weight": 6000,
+  "name": {
+    "en": "Ayushman Vay Vandana card (AB PM-JAY for 70+)",
+    "ta": "ஆயுஷ்மான் வய வந்தனா அட்டை (70+ வயதினருக்கு AB PM-JAY)",
+    "hi": "आयुष्मान वय वंदना कार्ड (70+ के लिए AB PM-JAY)"
+  },
+  "benefit": {
+    "en": "Free hospital treatment up to ₹5 lakh a year per family",
+    "ta": "குடும்பத்திற்கு ஆண்டுக்கு ₹5 லட்சம் வரை இலவச மருத்துவமனை சிகிச்சை",
+    "hi": "प्रति परिवार प्रति वर्ष ₹5 लाख तक मुफ्त अस्पताल इलाज"
+  },
+  "clauses": [
+    {
+      "id": "age",
+      "rule": {
+        ">=": [
+          {
+            "var": "age"
+          },
+          70
+        ]
+      },
+      "text": {
+        "en": "Aged 70 or above (any income)",
+        "ta": "70 வயது அல்லது அதற்கு மேல் (வருமான வரம்பு இல்லை)",
+        "hi": "70 वर्ष या अधिक (कोई आय सीमा नहीं)"
+      },
+      "source": {
+        "title": "Ayushman Vay Vandana card — AB PM-JAY for 70+",
+        "url": "https://iasgyan.in/daily-current-affairs/ayushman-vaya-vandana-card",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    }
+  ],
+  "required_documents": [
+    "aadhaar"
+  ],
+  "apply_at": {
+    "en": "Ayushman app or beneficiary.nha.gov.in, or any empanelled hospital",
+    "ta": "ஆயுஷ்மான் செயலி அல்லது beneficiary.nha.gov.in, அல்லது அங்கீகரிக்கப்பட்ட மருத்துவமனை",
+    "hi": "आयुष्मान ऐप या beneficiary.nha.gov.in, या कोई सूचीबद्ध अस्पताल"
+  },
+  "source_url": "https://beneficiary.nha.gov.in/",
+  "examples": [
+    {
+      "name": "72",
+      "profile": {
+        "age": 72
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "62",
+      "profile": {
+        "age": 62
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "age"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "office_checks": [],
+  "conflicts_with": []
+}

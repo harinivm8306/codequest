@@ -1,0 +1,221 @@
+{
+  "id": "pmuy",
+  "level": "central",
+  "state": null,
+  "category": "energy",
+  "benefit_weight": 3000,
+  "name": {
+    "en": "Pradhan Mantri Ujjwala Yojana (free LPG connection)",
+    "ta": "பிரதம மந்திரி உஜ்வாலா திட்டம் (இலவச எரிவாயு இணைப்பு)",
+    "hi": "प्रधानमंत्री उज्ज्वला योजना (मुफ्त एलपीजी कनेक्शन)"
+  },
+  "benefit": {
+    "en": "Deposit-free LPG gas connection in the woman's name",
+    "ta": "பெண்ணின் பெயரில் வைப்புத்தொகை இல்லாத எரிவாயு இணைப்பு",
+    "hi": "महिला के नाम पर बिना जमा राशि के एलपीजी कनेक्शन"
+  },
+  "clauses": [
+    {
+      "id": "woman",
+      "rule": {
+        "==": [
+          {
+            "var": "gender"
+          },
+          "female"
+        ]
+      },
+      "text": {
+        "en": "Applicant is a woman",
+        "ta": "விண்ணப்பதாரர் பெண்",
+        "hi": "आवेदक महिला हैं"
+      },
+      "source": {
+        "title": "PMUY eligibility summary",
+        "url": "https://www.iasgyan.in/daily-current-affairs/pradhan-mantri-ujjwala-yojana-pmuy-transforming-womens-health-clean-energy-access",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "adult",
+      "rule": {
+        ">=": [
+          {
+            "var": "age"
+          },
+          18
+        ]
+      },
+      "text": {
+        "en": "Aged 18 or above",
+        "ta": "18 வயது அல்லது அதற்கு மேல்",
+        "hi": "18 वर्ष या अधिक"
+      },
+      "source": {
+        "title": "PMUY eligibility summary",
+        "url": "https://www.iasgyan.in/daily-current-affairs/pradhan-mantri-ujjwala-yojana-pmuy-transforming-womens-health-clean-energy-access",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "no_lpg",
+      "rule": {
+        "==": [
+          {
+            "var": "has_lpg_connection"
+          },
+          false
+        ]
+      },
+      "text": {
+        "en": "No LPG connection in the household yet",
+        "ta": "வீட்டில் இன்னும் எரிவாயு இணைப்பு இல்லை",
+        "hi": "घर में अभी तक एलपीजी कनेक्शन नहीं"
+      },
+      "source": {
+        "title": "PMUY eligibility summary",
+        "url": "https://www.iasgyan.in/daily-current-affairs/pradhan-mantri-ujjwala-yojana-pmuy-transforming-womens-health-clean-energy-access",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "poor",
+      "rule": {
+        "or": [
+          {
+            "==": [
+              {
+                "var": "bpl_card"
+              },
+              true
+            ]
+          },
+          {
+            "in": [
+              {
+                "var": "caste_category"
+              },
+              [
+                "SC",
+                "ST"
+              ]
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Poor household (BPL / AAY card, or SC / ST family)",
+        "ta": "ஏழைக் குடும்பம் (BPL / AAY அட்டை, அல்லது SC / ST குடும்பம்)",
+        "hi": "गरीब परिवार (BPL / AAY कार्ड, या SC / ST परिवार)"
+      },
+      "source": {
+        "title": "PMUY eligibility summary",
+        "url": "https://www.iasgyan.in/daily-current-affairs/pradhan-mantri-ujjwala-yojana-pmuy-transforming-womens-health-clean-energy-access",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    }
+  ],
+  "office_checks": [
+    {
+      "en": "Other poor families can apply with a self-declaration form at the distributor",
+      "ta": "பிற ஏழைக் குடும்பங்கள் விநியோகஸ்தரிடம் சுய அறிவிப்புப் படிவத்துடன் விண்ணப்பிக்கலாம்",
+      "hi": "अन्य गरीब परिवार वितरक के पास स्व-घोषणा पत्र से आवेदन कर सकते हैं"
+    }
+  ],
+  "required_documents": [
+    "aadhaar",
+    "ration_card",
+    "bank_passbook",
+    "residence_certificate"
+  ],
+  "apply_at": {
+    "en": "Nearest LPG distributor or pmuy.gov.in",
+    "ta": "அருகிலுள்ள எரிவாயு விநியோகஸ்தர் அல்லது pmuy.gov.in",
+    "hi": "निकटतम एलपीजी वितरक या pmuy.gov.in"
+  },
+  "source_url": "https://www.pmuy.gov.in/",
+  "examples": [
+    {
+      "name": "sc woman",
+      "profile": {
+        "gender": "female",
+        "age": 30,
+        "has_lpg_connection": false,
+        "bpl_card": false,
+        "caste_category": "SC"
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "has lpg",
+      "profile": {
+        "gender": "female",
+        "age": 30,
+        "has_lpg_connection": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_lpg"
+      ]
+    },
+    {
+      "name": "bpl unknown caste",
+      "profile": {
+        "gender": "female",
+        "age": 30,
+        "has_lpg_connection": false,
+        "bpl_card": true
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "not poor",
+      "profile": {
+        "gender": "female",
+        "age": 30,
+        "has_lpg_connection": false,
+        "bpl_card": false,
+        "caste_category": "BC"
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "poor"
+      ]
+    },
+    {
+      "name": "fails woman",
+      "profile": {
+        "gender": "male",
+        "age": 30,
+        "has_lpg_connection": false,
+        "bpl_card": false,
+        "caste_category": "SC"
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "woman"
+      ]
+    },
+    {
+      "name": "fails adult",
+      "profile": {
+        "gender": "female",
+        "age": 17,
+        "has_lpg_connection": false,
+        "bpl_card": false,
+        "caste_category": "SC"
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "adult"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "conflicts_with": []
+}

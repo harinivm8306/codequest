@@ -1,0 +1,110 @@
+{
+  "id": "pmjjby",
+  "level": "central",
+  "state": null,
+  "category": "insurance",
+  "benefit_weight": 2000,
+  "name": {
+    "en": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+    "ta": "பிரதம மந்திரி ஜீவன் ஜோதி காப்பீட்டுத் திட்டம்",
+    "hi": "प्रधानमंत्री जीवन ज्योति बीमा योजना"
+  },
+  "benefit": {
+    "en": "₹2 lakh life cover for ₹436 a year, auto-debited",
+    "ta": "ஆண்டுக்கு ₹436க்கு ₹2 லட்சம் ஆயுள் காப்பீடு",
+    "hi": "₹436 प्रति वर्ष में ₹2 लाख जीवन बीमा"
+  },
+  "clauses": [
+    {
+      "id": "age",
+      "rule": {
+        "between": [
+          {
+            "var": "age"
+          },
+          18,
+          50
+        ]
+      },
+      "text": {
+        "en": "Aged 18 to 50 to join",
+        "ta": "சேர 18 முதல் 50 வயது",
+        "hi": "जुड़ने के लिए 18 से 50 वर्ष आयु"
+      },
+      "source": {
+        "title": "PIB — PMJJBY factsheet (May 2025)",
+        "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/may/doc202558551501.pdf",
+        "locator": "Eligibility",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "bank",
+      "rule": {
+        "==": [
+          {
+            "var": "has_bank_account"
+          },
+          true
+        ]
+      },
+      "text": {
+        "en": "Has a savings bank or post office account",
+        "ta": "சேமிப்பு வங்கி அல்லது அஞ்சலகக் கணக்கு உள்ளது",
+        "hi": "बचत बैंक या डाकघर खाता है"
+      },
+      "source": {
+        "title": "PIB — PMJJBY factsheet (May 2025)",
+        "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/may/doc202558551501.pdf",
+        "locator": "Eligibility",
+        "quality": "official"
+      }
+    }
+  ],
+  "required_documents": [
+    "aadhaar",
+    "bank_passbook"
+  ],
+  "apply_at": {
+    "en": "Your bank or post office branch",
+    "ta": "உங்கள் வங்கி அல்லது அஞ்சலகக் கிளை",
+    "hi": "आपकी बैंक या डाकघर शाखा"
+  },
+  "source_url": "https://jansuraksha.gov.in/",
+  "examples": [
+    {
+      "name": "30",
+      "profile": {
+        "age": 30,
+        "has_bank_account": true
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "55",
+      "profile": {
+        "age": 55,
+        "has_bank_account": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "age"
+      ]
+    },
+    {
+      "name": "no bank",
+      "profile": {
+        "age": 30,
+        "has_bank_account": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "bank"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "office_checks": [],
+  "conflicts_with": []
+}

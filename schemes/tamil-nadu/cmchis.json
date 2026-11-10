@@ -1,0 +1,149 @@
+{
+  "id": "cmchis",
+  "level": "state",
+  "state": "Tamil Nadu",
+  "category": "health",
+  "benefit_weight": 6000,
+  "name": {
+    "en": "Chief Minister's Comprehensive Health Insurance Scheme (CMCHIS)",
+    "ta": "முதலமைச்சரின் விரிவான மருத்துவக் காப்பீட்டுத் திட்டம்",
+    "hi": "मुख्यमंत्री व्यापक स्वास्थ्य बीमा योजना (तमिलनाडु)"
+  },
+  "benefit": {
+    "en": "Free treatment in listed hospitals up to ₹5 lakh per family a year (a rise to ₹25 lakh is announced; start date awaited)",
+    "ta": "பட்டியலிடப்பட்ட மருத்துவமனைகளில் குடும்பத்திற்கு ஆண்டுக்கு ₹5 லட்சம் வரை இலவச சிகிச்சை (₹25 லட்சமாக உயர்வு அறிவிப்பு; தேதி அறிவிக்கப்படவில்லை)",
+    "hi": "सूचीबद्ध अस्पतालों में प्रति परिवार ₹5 लाख तक मुफ्त इलाज (₹25 लाख की घोषणा; तिथि प्रतीक्षित)"
+  },
+  "clauses": [
+    {
+      "id": "tn",
+      "rule": {
+        "==": [
+          {
+            "var": "state"
+          },
+          "Tamil Nadu"
+        ]
+      },
+      "text": {
+        "en": "Lives in Tamil Nadu",
+        "ta": "தமிழ்நாட்டில் வசிப்பவர்",
+        "hi": "तमिलनाडु के निवासी"
+      },
+      "source": {
+        "title": "CMCHIS eligibility explainer (DT Next, Sept 2026)",
+        "url": "https://www.dtnext.in/explainer/how-to-apply-for-tamil-nadu-cms-comprehensive-health-insurance-scheme-eligibility-documents-and-process",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "income",
+      "rule": {
+        "or": [
+          {
+            "<=": [
+              {
+                "var": "annual_family_income"
+              },
+              120000
+            ]
+          },
+          {
+            ">": [
+              {
+                "var": "disability_percent"
+              },
+              0
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Family income up to ₹1.2 lakh a year (no limit if a family member has a disability)",
+        "ta": "ஆண்டுக் குடும்ப வருமானம் ₹1.2 லட்சம் வரை (மாற்றுத்திறனாளி உறுப்பினர் இருந்தால் வரம்பு இல்லை)",
+        "hi": "पारिवारिक आय ₹1.2 लाख प्रति वर्ष तक (विकलांग सदस्य हो तो कोई सीमा नहीं)"
+      },
+      "source": {
+        "title": "CMCHIS eligibility explainer (DT Next, Sept 2026)",
+        "url": "https://www.dtnext.in/explainer/how-to-apply-for-tamil-nadu-cms-comprehensive-health-insurance-scheme-eligibility-documents-and-process",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    }
+  ],
+  "office_checks": [
+    {
+      "en": "Not already covered by another health insurance scheme",
+      "ta": "வேறு மருத்துவக் காப்பீட்டுத் திட்டத்தில் இல்லாதவர்",
+      "hi": "किसी अन्य स्वास्थ्य बीमा योजना में शामिल नहीं"
+    }
+  ],
+  "required_documents": [
+    "income_certificate",
+    "ration_card",
+    "aadhaar"
+  ],
+  "apply_at": {
+    "en": "CMCHIS kiosk at the district government hospital or collectorate",
+    "ta": "மாவட்ட அரசு மருத்துவமனை அல்லது ஆட்சியர் அலுவலகத்திலுள்ள CMCHIS மையம்",
+    "hi": "ज़िला सरकारी अस्पताल या कलेक्टरेट में CMCHIS कियोस्क"
+  },
+  "source_url": "https://www.cmchistn.com/",
+  "examples": [
+    {
+      "name": "lakshmi",
+      "profile": {
+        "state": "Tamil Nadu",
+        "annual_family_income": 60000
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "income high",
+      "profile": {
+        "state": "Tamil Nadu",
+        "annual_family_income": 200000,
+        "disability_percent": 0
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "income"
+      ]
+    },
+    {
+      "name": "disabled any income",
+      "profile": {
+        "state": "Tamil Nadu",
+        "annual_family_income": 500000,
+        "disability_percent": 40
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "income high unknown disability",
+      "profile": {
+        "state": "Tamil Nadu",
+        "annual_family_income": 200000
+      },
+      "expect": "needs_info",
+      "missing": [
+        "disability_percent"
+      ]
+    },
+    {
+      "name": "fails tn",
+      "profile": {
+        "state": "Other",
+        "annual_family_income": 60000
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "tn"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "conflicts_with": []
+}

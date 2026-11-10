@@ -1,0 +1,217 @@
+{
+  "id": "pudhumai_penn",
+  "level": "state",
+  "state": "Tamil Nadu",
+  "category": "education",
+  "benefit_weight": 12000,
+  "name": {
+    "en": "Pudhumai Penn (Moovalur Ramamirtham Ammaiyar Higher Education Assurance)",
+    "ta": "புதுமைப் பெண் (மூவலூர் இராமாமிர்தம் அம்மையார் உயர்கல்வி உறுதித் திட்டம்)",
+    "hi": "पुदुमई पेण्ण (उच्च शिक्षा आश्वासन योजना, छात्राओं के लिए)"
+  },
+  "benefit": {
+    "en": "₹1,000 every month while you study, paid to your bank account",
+    "ta": "படிக்கும் காலம் முழுவதும் மாதம் ₹1,000 வங்கிக் கணக்கில்",
+    "hi": "पढ़ाई के दौरान हर महीने ₹1,000 बैंक खाते में"
+  },
+  "clauses": [
+    {
+      "id": "tn",
+      "rule": {
+        "==": [
+          {
+            "var": "state"
+          },
+          "Tamil Nadu"
+        ]
+      },
+      "text": {
+        "en": "Lives in Tamil Nadu",
+        "ta": "தமிழ்நாட்டில் வசிப்பவர்",
+        "hi": "तमिलनाडु के निवासी"
+      },
+      "source": {
+        "title": "Tamil Pudhalvan / Pudhumai Penn scheme notice (2024-25)",
+        "url": "https://www.karunya.edu/sites/default/files/img/Scholarship/TAMIL-PUDHALVAN.pdf",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "gender",
+      "rule": {
+        "in": [
+          {
+            "var": "gender"
+          },
+          [
+            "female",
+            "other"
+          ]
+        ]
+      },
+      "text": {
+        "en": "Girl student (third gender included)",
+        "ta": "மாணவி (மூன்றாம் பாலினத்தவரும்)",
+        "hi": "छात्रा (तृतीय लिंग शामिल)"
+      },
+      "source": {
+        "title": "Tamil Pudhalvan / Pudhumai Penn scheme notice (2024-25)",
+        "url": "https://www.karunya.edu/sites/default/files/img/Scholarship/TAMIL-PUDHALVAN.pdf",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "govt_school",
+      "rule": {
+        "==": [
+          {
+            "var": "studied_govt_school"
+          },
+          true
+        ]
+      },
+      "text": {
+        "en": "Studied Class 6 to 12 in a government school (or government-aided Tamil-medium school)",
+        "ta": "6 முதல் 12ஆம் வகுப்பு வரை அரசுப் பள்ளியில் (அல்லது அரசு உதவி பெறும் தமிழ்வழிப் பள்ளியில்) படித்தவர்",
+        "hi": "कक्षा 6 से 12 सरकारी स्कूल (या सहायता प्राप्त तमिल माध्यम स्कूल) में पढ़ाई"
+      },
+      "source": {
+        "title": "Tamil Pudhalvan / Pudhumai Penn scheme notice (2024-25)",
+        "url": "https://www.karunya.edu/sites/default/files/img/Scholarship/TAMIL-PUDHALVAN.pdf",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "higher_ed",
+      "rule": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "occupation"
+              },
+              "student"
+            ]
+          },
+          {
+            "in": [
+              {
+                "var": "course_level"
+              },
+              [
+                "iti",
+                "diploma",
+                "ug"
+              ]
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Now in higher education (degree, diploma or ITI)",
+        "ta": "தற்போது உயர்கல்வியில் (பட்டம், பட்டயம் அல்லது ஐடிஐ)",
+        "hi": "अभी उच्च शिक्षा में (स्नातक, डिप्लोमा या ITI)"
+      },
+      "source": {
+        "title": "Tamil Pudhalvan / Pudhumai Penn scheme notice (2024-25)",
+        "url": "https://www.karunya.edu/sites/default/files/img/Scholarship/TAMIL-PUDHALVAN.pdf",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    }
+  ],
+  "office_checks": [
+    {
+      "en": "Students who joined ITI after Class 8 or 10 can also apply — the college confirms",
+      "ta": "8 அல்லது 10ஆம் வகுப்புக்குப் பின் ஐடிஐ சேர்ந்தவர்களும் விண்ணப்பிக்கலாம் — கல்லூரி உறுதி செய்யும்",
+      "hi": "8वीं या 10वीं के बाद ITI करने वाले भी आवेदन कर सकते हैं — कॉलेज पुष्टि करेगा"
+    }
+  ],
+  "required_documents": [
+    "aadhaar",
+    "school_certificate",
+    "admission_proof",
+    "bank_passbook"
+  ],
+  "apply_at": {
+    "en": "Through your college's student affairs office (pudhumaipenn.tn.gov.in)",
+    "ta": "உங்கள் கல்லூரியின் மாணவர் நல அலுவலகம் வழியாக",
+    "hi": "अपने कॉलेज के छात्र कार्यालय के माध्यम से"
+  },
+  "source_url": "https://pudhumaipenn.tn.gov.in/",
+  "examples": [
+    {
+      "name": "eligible",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "studied_govt_school": true,
+        "occupation": "student",
+        "course_level": "ug"
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "private school",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "studied_govt_school": false,
+        "occupation": "student",
+        "course_level": "ug"
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "govt_school"
+      ]
+    },
+    {
+      "name": "pg",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "studied_govt_school": true,
+        "occupation": "student",
+        "course_level": "pg"
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "higher_ed"
+      ]
+    },
+    {
+      "name": "fails tn",
+      "profile": {
+        "state": "Other",
+        "gender": "female",
+        "studied_govt_school": true,
+        "occupation": "student",
+        "course_level": "ug"
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "tn"
+      ]
+    },
+    {
+      "name": "fails gender",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "male",
+        "studied_govt_school": true,
+        "occupation": "student",
+        "course_level": "ug"
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "gender"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "conflicts_with": []
+}

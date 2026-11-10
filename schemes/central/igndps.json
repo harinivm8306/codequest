@@ -1,0 +1,149 @@
+{
+  "id": "igndps",
+  "level": "central",
+  "state": null,
+  "category": "pension",
+  "benefit_weight": 3600,
+  "name": {
+    "en": "Indira Gandhi National Disability Pension Scheme",
+    "ta": "இந்திரா காந்தி தேசிய மாற்றுத்திறனாளி ஓய்வூதியத் திட்டம்",
+    "hi": "इंदिरा गांधी राष्ट्रीय विकलांगता पेंशन योजना"
+  },
+  "benefit": {
+    "en": "Monthly pension: central share ₹300 (₹500 from age 80), plus the state's top-up",
+    "ta": "மாதாந்திர ஓய்வூதியம்: மத்திய பங்கு ₹300 (80 வயது முதல் ₹500), மேலும் மாநில அரசின் கூடுதல் தொகை",
+    "hi": "मासिक पेंशन: केंद्रीय हिस्सा ₹300 (80 वर्ष से ₹500), साथ में राज्य का अंश"
+  },
+  "clauses": [
+    {
+      "id": "age",
+      "rule": {
+        ">=": [
+          {
+            "var": "age"
+          },
+          18
+        ]
+      },
+      "text": {
+        "en": "Aged 18 or above",
+        "ta": "18 வயது அல்லது அதற்கு மேல்",
+        "hi": "18 वर्ष या अधिक आयु"
+      },
+      "source": {
+        "title": "NSAP Guidelines (Ministry of Rural Development)",
+        "url": "https://socialwelfare.tripura.gov.in/sites/default/files/NSAP%20Guidline%20II.pdf",
+        "locator": "Chapter II, para 2.3",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "disability",
+      "rule": {
+        ">=": [
+          {
+            "var": "disability_percent"
+          },
+          80
+        ]
+      },
+      "text": {
+        "en": "Disability of 80% or more",
+        "ta": "80% அல்லது அதற்கு மேல் மாற்றுத்திறன்",
+        "hi": "80% या अधिक विकलांगता"
+      },
+      "source": {
+        "title": "NSAP Guidelines (Ministry of Rural Development)",
+        "url": "https://socialwelfare.tripura.gov.in/sites/default/files/NSAP%20Guidline%20II.pdf",
+        "locator": "Chapter II, para 2.3",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "bpl",
+      "rule": {
+        "==": [
+          {
+            "var": "bpl_card"
+          },
+          true
+        ]
+      },
+      "text": {
+        "en": "Household is below the poverty line (PHH / AAY ration card)",
+        "ta": "குடும்பம் வறுமைக் கோட்டுக்குக் கீழ் (PHH / AAY குடும்ப அட்டை)",
+        "hi": "परिवार गरीबी रेखा से नीचे (BPL / अंत्योदय कार्ड)"
+      },
+      "source": {
+        "title": "NSAP Guidelines (Ministry of Rural Development)",
+        "url": "https://socialwelfare.tripura.gov.in/sites/default/files/NSAP%20Guidline%20II.pdf",
+        "locator": "Chapter II, para 2.3",
+        "quality": "official"
+      }
+    }
+  ],
+  "required_documents": [
+    "aadhaar",
+    "disability_certificate",
+    "ration_card",
+    "bank_passbook",
+    "residence_certificate"
+  ],
+  "apply_at": {
+    "en": "Taluk office (Social Security Tahsildar) or an e-Sevai centre",
+    "ta": "வட்டாட்சியர் அலுவலகம் (சமூகப் பாதுகாப்புத் திட்ட வட்டாட்சியர்) அல்லது இ-சேவை மையம்",
+    "hi": "तालुका कार्यालय या ई-सेवा केंद्र"
+  },
+  "source_url": "https://nsap.nic.in/",
+  "examples": [
+    {
+      "name": "eligible",
+      "profile": {
+        "age": 30,
+        "disability_percent": 80,
+        "bpl_card": true
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "60pct",
+      "profile": {
+        "age": 30,
+        "disability_percent": 60,
+        "bpl_card": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "disability"
+      ]
+    },
+    {
+      "name": "minor",
+      "profile": {
+        "age": 16,
+        "disability_percent": 90,
+        "bpl_card": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "age"
+      ]
+    },
+    {
+      "name": "fails bpl",
+      "profile": {
+        "age": 30,
+        "disability_percent": 80,
+        "bpl_card": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "bpl"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "office_checks": [],
+  "conflicts_with": []
+}

@@ -1,0 +1,288 @@
+{
+  "id": "pm_kisan",
+  "level": "central",
+  "state": null,
+  "category": "agriculture",
+  "benefit_weight": 6000,
+  "name": {
+    "en": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+    "ta": "பிரதம மந்திரி கிசான் சம்மான் நிதி (PM-KISAN)",
+    "hi": "प्रधानमंत्री किसान सम्मान निधि (पीएम-किसान)"
+  },
+  "benefit": {
+    "en": "₹6,000 a year, paid as three instalments of ₹2,000 to the bank account",
+    "ta": "ஆண்டுக்கு ₹6,000, மூன்று தவணைகளாக ₹2,000 வங்கிக் கணக்கில்",
+    "hi": "₹6,000 प्रति वर्ष, ₹2,000 की तीन किस्तों में बैंक खाते में"
+  },
+  "clauses": [
+    {
+      "id": "land",
+      "rule": {
+        ">": [
+          {
+            "var": "land_acres"
+          },
+          0
+        ]
+      },
+      "text": {
+        "en": "Family owns cultivable farm land",
+        "ta": "குடும்பத்திற்குச் சொந்தமான விவசாய நிலம் உள்ளது",
+        "hi": "परिवार के पास खेती योग्य ज़मीन है"
+      },
+      "source": {
+        "title": "PM-KISAN Revised Operational Guidelines",
+        "url": "https://pmkisan.gov.in/Documents/RevisedPM-KISANOperationalGuidelines(English).pdf",
+        "locator": "Para 2 (eligibility) and exclusion list",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "no_tax",
+      "rule": {
+        "==": [
+          {
+            "var": "family_pays_income_tax"
+          },
+          false
+        ]
+      },
+      "text": {
+        "en": "No one in the family paid income tax last year",
+        "ta": "கடந்த ஆண்டு குடும்பத்தில் யாரும் வருமான வரி செலுத்தவில்லை",
+        "hi": "पिछले वर्ष परिवार में किसी ने आयकर नहीं भरा"
+      },
+      "source": {
+        "title": "PM-KISAN: eligibility and exclusions (PIB press material)",
+        "url": "https://static.pib.gov.in/WriteReadData/userfiles/Press%20conference_24-Feb-2020.pdf",
+        "locator": "Exclusion criteria",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "no_govt_job",
+      "rule": {
+        "==": [
+          {
+            "var": "family_govt_job"
+          },
+          false
+        ]
+      },
+      "text": {
+        "en": "No one in the family has a government / PSU job (Group D / MTS staff are not excluded)",
+        "ta": "குடும்பத்தில் யாரும் அரசு / பொதுத்துறை வேலையில் இல்லை (D பிரிவு / MTS விலக்கல்ல)",
+        "hi": "परिवार में किसी की सरकारी / PSU नौकरी नहीं (ग्रुप D / MTS बाहर नहीं)"
+      },
+      "source": {
+        "title": "PM-KISAN: eligibility and exclusions (PIB press material)",
+        "url": "https://static.pib.gov.in/WriteReadData/userfiles/Press%20conference_24-Feb-2020.pdf",
+        "locator": "Exclusion criteria",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "pension",
+      "rule": {
+        "!=": [
+          {
+            "var": "family_govt_pension"
+          },
+          "10k_plus"
+        ]
+      },
+      "text": {
+        "en": "No one in the family gets a government pension of ₹10,000+ a month",
+        "ta": "குடும்பத்தில் யாருக்கும் மாதம் ₹10,000+ அரசு ஓய்வூதியம் இல்லை",
+        "hi": "परिवार में किसी को ₹10,000+ मासिक सरकारी पेंशन नहीं"
+      },
+      "source": {
+        "title": "PM-KISAN: eligibility and exclusions (PIB press material)",
+        "url": "https://static.pib.gov.in/WriteReadData/userfiles/Press%20conference_24-Feb-2020.pdf",
+        "locator": "Exclusion criteria",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "no_elected",
+      "rule": {
+        "==": [
+          {
+            "var": "family_elected_rep"
+          },
+          false
+        ]
+      },
+      "text": {
+        "en": "No one in the family holds or held a constitutional / elected post",
+        "ta": "குடும்பத்தில் யாரும் அரசியலமைப்பு / தேர்ந்தெடுக்கப்பட்ட பதவியில் இல்லை",
+        "hi": "परिवार में कोई संवैधानिक / निर्वाचित पद पर नहीं"
+      },
+      "source": {
+        "title": "PM-KISAN: eligibility and exclusions (PIB press material)",
+        "url": "https://static.pib.gov.in/WriteReadData/userfiles/Press%20conference_24-Feb-2020.pdf",
+        "locator": "Exclusion criteria",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "no_professional",
+      "rule": {
+        "==": [
+          {
+            "var": "family_registered_professional"
+          },
+          false
+        ]
+      },
+      "text": {
+        "en": "No one in the family is a registered doctor, engineer, lawyer, CA or architect",
+        "ta": "குடும்பத்தில் யாரும் பதிவுபெற்ற மருத்துவர், பொறியாளர், வழக்கறிஞர், CA அல்லது கட்டடக் கலைஞர் இல்லை",
+        "hi": "परिवार में कोई पंजीकृत डॉक्टर, इंजीनियर, वकील, CA या आर्किटेक्ट नहीं"
+      },
+      "source": {
+        "title": "PM-KISAN: eligibility and exclusions (PIB press material)",
+        "url": "https://static.pib.gov.in/WriteReadData/userfiles/Press%20conference_24-Feb-2020.pdf",
+        "locator": "Exclusion criteria",
+        "quality": "official"
+      }
+    }
+  ],
+  "office_checks": [
+    {
+      "en": "Land must be in the family's name in land records",
+      "ta": "நிலம் குடும்பத்தின் பெயரில் பட்டா பதிவில் இருக்க வேண்டும்",
+      "hi": "ज़मीन भू-अभिलेख में परिवार के नाम होनी चाहिए"
+    },
+    {
+      "en": "Bank account must be linked to Aadhaar",
+      "ta": "வங்கிக் கணக்கு ஆதாருடன் இணைக்கப்பட வேண்டும்",
+      "hi": "बैंक खाता आधार से जुड़ा होना चाहिए"
+    }
+  ],
+  "required_documents": [
+    "aadhaar",
+    "land_record",
+    "bank_passbook"
+  ],
+  "apply_at": {
+    "en": "pmkisan.gov.in, a CSC, or the Agriculture department office",
+    "ta": "pmkisan.gov.in, பொது சேவை மையம், அல்லது வேளாண்மைத் துறை அலுவலகம்",
+    "hi": "pmkisan.gov.in, CSC या कृषि विभाग कार्यालय"
+  },
+  "source_url": "https://pmkisan.gov.in/",
+  "examples": [
+    {
+      "name": "small farmer",
+      "profile": {
+        "land_acres": 2,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": false,
+        "family_registered_professional": false
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "no land",
+      "profile": {
+        "land_acres": 0
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "land"
+      ]
+    },
+    {
+      "name": "pensioner 10k",
+      "profile": {
+        "land_acres": 3,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "10k_plus",
+        "family_elected_rep": false,
+        "family_registered_professional": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "pension"
+      ]
+    },
+    {
+      "name": "small pension ok",
+      "profile": {
+        "land_acres": 3,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "below_10k",
+        "family_elected_rep": false,
+        "family_registered_professional": false
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "fails no_tax",
+      "profile": {
+        "land_acres": 2,
+        "family_pays_income_tax": true,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": false,
+        "family_registered_professional": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_tax"
+      ]
+    },
+    {
+      "name": "fails no_govt_job",
+      "profile": {
+        "land_acres": 2,
+        "family_pays_income_tax": false,
+        "family_govt_job": true,
+        "family_govt_pension": "none",
+        "family_elected_rep": false,
+        "family_registered_professional": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_govt_job"
+      ]
+    },
+    {
+      "name": "fails no_elected",
+      "profile": {
+        "land_acres": 2,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": true,
+        "family_registered_professional": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_elected"
+      ]
+    },
+    {
+      "name": "fails no_professional",
+      "profile": {
+        "land_acres": 2,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": false,
+        "family_registered_professional": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_professional"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "conflicts_with": []
+}

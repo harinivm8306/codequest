@@ -1,0 +1,540 @@
+{
+  "id": "kmut",
+  "level": "state",
+  "state": "Tamil Nadu",
+  "category": "income_support",
+  "benefit_weight": 12000,
+  "name": {
+    "en": "Kalaignar Magalir Urimai Thogai",
+    "ta": "கலைஞர் மகளிர் உரிமைத் தொகை",
+    "hi": "कलैञर महिला अधिकार राशि (KMUT)"
+  },
+  "benefit": {
+    "en": "₹1,000 every month to the woman head of the family",
+    "ta": "குடும்பத் தலைவிக்கு மாதந்தோறும் ₹1,000",
+    "hi": "परिवार की महिला मुखिया को हर महीने ₹1,000"
+  },
+  "clauses": [
+    {
+      "id": "tn",
+      "rule": {
+        "==": [
+          {
+            "var": "state"
+          },
+          "Tamil Nadu"
+        ]
+      },
+      "text": {
+        "en": "Lives in Tamil Nadu",
+        "ta": "தமிழ்நாட்டில் வசிப்பவர்",
+        "hi": "तमिलनाडु के निवासी"
+      },
+      "source": {
+        "title": "KMUT eligibility criteria announced by TN government (July 2023)",
+        "url": "https://www.thenewsminute.com/article/tn-govt-announces-eligibility-criteria-monthly-financial-assistance-scheme-179471",
+        "locator": "Eligibility and exclusions",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "woman21",
+      "rule": {
+        "and": [
+          {
+            "in": [
+              {
+                "var": "gender"
+              },
+              [
+                "female",
+                "other"
+              ]
+            ]
+          },
+          {
+            ">=": [
+              {
+                "var": "age"
+              },
+              21
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Woman (or trans woman) aged 21 or above",
+        "ta": "21 வயது நிரம்பிய பெண் (அல்லது திருநங்கை)",
+        "hi": "21 वर्ष या अधिक आयु की महिला (या ट्रांस महिला)"
+      },
+      "source": {
+        "title": "KMUT eligibility criteria announced by TN government (July 2023)",
+        "url": "https://www.thenewsminute.com/article/tn-govt-announces-eligibility-criteria-monthly-financial-assistance-scheme-179471",
+        "locator": "Eligibility and exclusions",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "income",
+      "rule": {
+        "<": [
+          {
+            "var": "annual_family_income"
+          },
+          250000
+        ]
+      },
+      "text": {
+        "en": "Family income below ₹2.5 lakh a year",
+        "ta": "ஆண்டுக் குடும்ப வருமானம் ₹2.5 லட்சத்திற்குக் கீழ்",
+        "hi": "पारिवारिक आय ₹2.5 लाख प्रति वर्ष से कम"
+      },
+      "source": {
+        "title": "KMUT eligibility criteria announced by TN government (July 2023)",
+        "url": "https://www.thenewsminute.com/article/tn-govt-announces-eligibility-criteria-monthly-financial-assistance-scheme-179471",
+        "locator": "Eligibility and exclusions",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "land",
+      "rule": {
+        "or": [
+          {
+            "<=": [
+              {
+                "var": "land_acres"
+              },
+              5
+            ]
+          },
+          {
+            "and": [
+              {
+                "==": [
+                  {
+                    "var": "land_irrigated"
+                  },
+                  false
+                ]
+              },
+              {
+                "<=": [
+                  {
+                    "var": "land_acres"
+                  },
+                  10
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Up to 5 acres of wet land or 10 acres of dry land",
+        "ta": "5 ஏக்கர் நஞ்சை அல்லது 10 ஏக்கர் புஞ்சை வரை",
+        "hi": "5 एकड़ सिंचित या 10 एकड़ असिंचित भूमि तक"
+      },
+      "source": {
+        "title": "KMUT eligibility criteria announced by TN government (July 2023)",
+        "url": "https://www.thenewsminute.com/article/tn-govt-announces-eligibility-criteria-monthly-financial-assistance-scheme-179471",
+        "locator": "Eligibility and exclusions",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "no_tax",
+      "rule": {
+        "==": [
+          {
+            "var": "family_pays_income_tax"
+          },
+          false
+        ]
+      },
+      "text": {
+        "en": "No income-tax payer in the family",
+        "ta": "குடும்பத்தில் வருமான வரி செலுத்துபவர் இல்லை",
+        "hi": "परिवार में कोई आयकरदाता नहीं"
+      },
+      "source": {
+        "title": "KMUT eligibility criteria announced by TN government (July 2023)",
+        "url": "https://www.thenewsminute.com/article/tn-govt-announces-eligibility-criteria-monthly-financial-assistance-scheme-179471",
+        "locator": "Eligibility and exclusions",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "no_govt",
+      "rule": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "family_govt_job"
+              },
+              false
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "family_govt_pension"
+              },
+              "none"
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "No government / PSU / bank employee or pensioner in the family",
+        "ta": "குடும்பத்தில் அரசு / பொதுத்துறை / வங்கி ஊழியர் அல்லது ஓய்வூதியர் இல்லை",
+        "hi": "परिवार में कोई सरकारी / PSU / बैंक कर्मचारी या पेंशनभोगी नहीं"
+      },
+      "source": {
+        "title": "KMUT eligibility criteria announced by TN government (July 2023)",
+        "url": "https://www.thenewsminute.com/article/tn-govt-announces-eligibility-criteria-monthly-financial-assistance-scheme-179471",
+        "locator": "Eligibility and exclusions",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "no_elected",
+      "rule": {
+        "==": [
+          {
+            "var": "family_elected_rep"
+          },
+          false
+        ]
+      },
+      "text": {
+        "en": "No MP, MLA or local-body head / member in the family (ward members allowed)",
+        "ta": "குடும்பத்தில் MP, MLA அல்லது உள்ளாட்சித் தலைவர் / உறுப்பினர் இல்லை (வார்டு உறுப்பினர் விலக்கல்ல)",
+        "hi": "परिवार में कोई सांसद, विधायक या स्थानीय निकाय प्रमुख / सदस्य नहीं"
+      },
+      "source": {
+        "title": "KMUT eligibility criteria announced by TN government (July 2023)",
+        "url": "https://www.thenewsminute.com/article/tn-govt-announces-eligibility-criteria-monthly-financial-assistance-scheme-179471",
+        "locator": "Eligibility and exclusions",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "no_vehicle",
+      "rule": {
+        "==": [
+          {
+            "var": "owns_four_wheeler"
+          },
+          false
+        ]
+      },
+      "text": {
+        "en": "Family does not own a car, jeep, tractor or heavy vehicle",
+        "ta": "குடும்பத்திடம் கார், ஜீப், டிராக்டர் அல்லது கனரக வாகனம் இல்லை",
+        "hi": "परिवार के पास कार, जीप, ट्रैक्टर या भारी वाहन नहीं"
+      },
+      "source": {
+        "title": "KMUT eligibility criteria announced by TN government (July 2023)",
+        "url": "https://www.thenewsminute.com/article/tn-govt-announces-eligibility-criteria-monthly-financial-assistance-scheme-179471",
+        "locator": "Eligibility and exclusions",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "no_pension",
+      "rule": {
+        "==": [
+          {
+            "var": "receives_social_pension"
+          },
+          false
+        ]
+      },
+      "text": {
+        "en": "Not already receiving an old-age, widow or welfare-board pension",
+        "ta": "ஏற்கனவே முதியோர், விதவை அல்லது நலவாரிய ஓய்வூதியம் பெறவில்லை",
+        "hi": "पहले से वृद्धा, विधवा या कल्याण बोर्ड पेंशन नहीं मिल रही"
+      },
+      "source": {
+        "title": "KMUT eligibility criteria announced by TN government (July 2023)",
+        "url": "https://www.thenewsminute.com/article/tn-govt-announces-eligibility-criteria-monthly-financial-assistance-scheme-179471",
+        "locator": "Eligibility and exclusions",
+        "quality": "secondary"
+      }
+    }
+  ],
+  "office_checks": [
+    {
+      "en": "Household electricity use below 3,600 units a year",
+      "ta": "வீட்டு மின் பயன்பாடு ஆண்டுக்கு 3,600 யூனிட்டுக்குக் கீழ்",
+      "hi": "घरेलू बिजली खपत 3,600 यूनिट प्रति वर्ष से कम"
+    },
+    {
+      "en": "Only one woman per ration card can apply",
+      "ta": "ஒரு குடும்ப அட்டைக்கு ஒரு பெண் மட்டும் விண்ணப்பிக்கலாம்",
+      "hi": "प्रति राशन कार्ड केवल एक महिला आवेदन कर सकती है"
+    },
+    {
+      "en": "No family business with GST turnover of ₹50 lakh or more",
+      "ta": "₹50 லட்சம் அல்லது அதற்கு மேல் GST வருவாய் உள்ள தொழில் இல்லை",
+      "hi": "₹50 लाख या अधिक GST टर्नओवर वाला व्यवसाय नहीं"
+    }
+  ],
+  "conflicts_with": [
+    {
+      "scheme": "ignoaps",
+      "note": {
+        "en": "Getting an old-age pension would make you ineligible for Magalir Urimai Thogai — compare the amounts first.",
+        "ta": "முதியோர் ஓய்வூதியம் பெற்றால் மகளிர் உரிமைத் தொகை கிடைக்காது — முதலில் தொகைகளை ஒப்பிடுங்கள்.",
+        "hi": "वृद्धावस्था पेंशन लेने पर KMUT नहीं मिलेगा — पहले राशि की तुलना करें।"
+      }
+    },
+    {
+      "scheme": "ignwps",
+      "note": {
+        "en": "Getting a widow pension would make you ineligible for Magalir Urimai Thogai — compare the amounts first.",
+        "ta": "விதவை ஓய்வூதியம் பெற்றால் மகளிர் உரிமைத் தொகை கிடைக்காது — முதலில் தொகைகளை ஒப்பிடுங்கள்.",
+        "hi": "विधवा पेंशन लेने पर KMUT नहीं मिलेगा — पहले राशि की तुलना करें।"
+      }
+    },
+    {
+      "scheme": "igndps",
+      "note": {
+        "en": "Disability maintenance allowance from the Differently-Abled Welfare department is allowed with this scheme; other pensions are not.",
+        "ta": "மாற்றுத்திறனாளிகள் நலத்துறை பராமரிப்புத் தொகை அனுமதிக்கப்படும்; பிற ஓய்வூதியங்கள் அனுமதிக்கப்படாது.",
+        "hi": "विकलांग कल्याण विभाग का भरण-पोषण भत्ता मान्य है; अन्य पेंशन नहीं।"
+      }
+    }
+  ],
+  "required_documents": [
+    "aadhaar",
+    "ration_card",
+    "bank_passbook",
+    "residence_certificate"
+  ],
+  "apply_at": {
+    "en": "Camp at your ration shop, an e-Sevai centre, or kmut.tn.gov.in",
+    "ta": "உங்கள் நியாய விலைக் கடை முகாம், இ-சேவை மையம், அல்லது kmut.tn.gov.in",
+    "hi": "राशन दुकान शिविर, ई-सेवा केंद्र, या kmut.tn.gov.in"
+  },
+  "source_url": "https://kmut.tn.gov.in/",
+  "examples": [
+    {
+      "name": "lakshmi",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "age": 62,
+        "annual_family_income": 60000,
+        "land_acres": 0,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": false,
+        "owns_four_wheeler": false,
+        "receives_social_pension": false
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "dry 8 acres ok",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "age": 40,
+        "annual_family_income": 100000,
+        "land_acres": 8,
+        "land_irrigated": false,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": false,
+        "owns_four_wheeler": false,
+        "receives_social_pension": false
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "wet 8 acres",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "age": 40,
+        "annual_family_income": 100000,
+        "land_acres": 8,
+        "land_irrigated": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "land"
+      ]
+    },
+    {
+      "name": "pension",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "age": 62,
+        "receives_social_pension": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_pension"
+      ]
+    },
+    {
+      "name": "kerala",
+      "profile": {
+        "state": "Other"
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "tn"
+      ]
+    },
+    {
+      "name": "8 acres unknown type",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "age": 40,
+        "annual_family_income": 100000,
+        "land_acres": 8,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": false,
+        "owns_four_wheeler": false,
+        "receives_social_pension": false
+      },
+      "expect": "needs_info",
+      "missing": [
+        "land_irrigated"
+      ]
+    },
+    {
+      "name": "fails woman21",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "age": 20,
+        "annual_family_income": 60000,
+        "land_acres": 0,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": false,
+        "owns_four_wheeler": false,
+        "receives_social_pension": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "woman21"
+      ]
+    },
+    {
+      "name": "fails income",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "age": 62,
+        "annual_family_income": 250000,
+        "land_acres": 0,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": false,
+        "owns_four_wheeler": false,
+        "receives_social_pension": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "income"
+      ]
+    },
+    {
+      "name": "fails no_tax",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "age": 62,
+        "annual_family_income": 60000,
+        "land_acres": 0,
+        "family_pays_income_tax": true,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": false,
+        "owns_four_wheeler": false,
+        "receives_social_pension": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_tax"
+      ]
+    },
+    {
+      "name": "fails no_govt",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "age": 62,
+        "annual_family_income": 60000,
+        "land_acres": 0,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "below_10k",
+        "family_elected_rep": false,
+        "owns_four_wheeler": false,
+        "receives_social_pension": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_govt"
+      ]
+    },
+    {
+      "name": "fails no_elected",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "age": 62,
+        "annual_family_income": 60000,
+        "land_acres": 0,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": true,
+        "owns_four_wheeler": false,
+        "receives_social_pension": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_elected"
+      ]
+    },
+    {
+      "name": "fails no_vehicle",
+      "profile": {
+        "state": "Tamil Nadu",
+        "gender": "female",
+        "age": 62,
+        "annual_family_income": 60000,
+        "land_acres": 0,
+        "family_pays_income_tax": false,
+        "family_govt_job": false,
+        "family_govt_pension": "none",
+        "family_elected_rep": false,
+        "owns_four_wheeler": true,
+        "receives_social_pension": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_vehicle"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27"
+}

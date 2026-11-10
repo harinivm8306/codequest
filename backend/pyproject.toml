@@ -1,0 +1,16 @@
+[project]
+name = "schemesathi-backend"
+version = "1.0.0"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 160
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B008"]  # B008: FastAPI's Depends() in defaults is the documented pattern
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-p no:logging"

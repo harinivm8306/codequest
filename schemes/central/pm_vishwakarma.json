@@ -1,0 +1,202 @@
+{
+  "id": "pm_vishwakarma",
+  "level": "central",
+  "state": null,
+  "category": "livelihood",
+  "benefit_weight": 20000,
+  "name": {
+    "en": "PM Vishwakarma",
+    "ta": "பிரதம மந்திரி விஸ்வகர்மா",
+    "hi": "पीएम विश्वकर्मा"
+  },
+  "benefit": {
+    "en": "₹15,000 toolkit e-voucher, paid training (₹500/day), and collateral-free loans up to ₹3 lakh at 5%",
+    "ta": "₹15,000 கருவி மின்-சீட்டு, பயிற்சி உதவித்தொகை (நாளுக்கு ₹500), 5% வட்டியில் பிணையில்லா ₹3 லட்சம் வரை கடன்",
+    "hi": "₹15,000 टूलकिट ई-वाउचर, प्रशिक्षण भत्ता (₹500/दिन), 5% ब्याज पर ₹3 लाख तक बिना गारंटी ऋण"
+  },
+  "clauses": [
+    {
+      "id": "trade",
+      "rule": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "occupation"
+              },
+              "artisan"
+            ]
+          },
+          {
+            "in": [
+              {
+                "var": "traditional_trade"
+              },
+              [
+                "carpenter",
+                "boat_maker",
+                "armourer",
+                "blacksmith",
+                "hammer_toolkit_maker",
+                "locksmith",
+                "goldsmith",
+                "potter",
+                "sculptor_stone_carver",
+                "cobbler",
+                "mason",
+                "basket_mat_broom_coir_maker",
+                "doll_toy_maker",
+                "barber",
+                "garland_maker",
+                "washerman",
+                "tailor",
+                "fishing_net_maker"
+              ]
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Works with hands and tools in one of the 18 listed traditional trades",
+        "ta": "பட்டியலிடப்பட்ட 18 பாரம்பரியத் தொழில்களில் ஒன்றில் கை மற்றும் கருவிகளுடன் வேலை செய்பவர்",
+        "hi": "18 सूचीबद्ध पारंपरिक व्यवसायों में से एक में हाथ और औज़ारों से काम"
+      },
+      "source": {
+        "title": "PIB — PM Vishwakarma factsheet (Sept 2025)",
+        "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc2025916638501.pdf",
+        "locator": "Eligibility",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "age",
+      "rule": {
+        ">=": [
+          {
+            "var": "age"
+          },
+          18
+        ]
+      },
+      "text": {
+        "en": "Aged 18 or above",
+        "ta": "18 வயது அல்லது அதற்கு மேல்",
+        "hi": "18 वर्ष या अधिक"
+      },
+      "source": {
+        "title": "PIB — PM Vishwakarma factsheet (Sept 2025)",
+        "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc2025916638501.pdf",
+        "locator": "Eligibility",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "no_govt_job",
+      "rule": {
+        "==": [
+          {
+            "var": "family_govt_job"
+          },
+          false
+        ]
+      },
+      "text": {
+        "en": "No one in the family is in government service",
+        "ta": "குடும்பத்தில் யாரும் அரசுப் பணியில் இல்லை",
+        "hi": "परिवार में कोई सरकारी सेवा में नहीं"
+      },
+      "source": {
+        "title": "PIB — PM Vishwakarma factsheet (Sept 2025)",
+        "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/sep/doc2025916638501.pdf",
+        "locator": "Eligibility",
+        "quality": "official"
+      }
+    }
+  ],
+  "office_checks": [
+    {
+      "en": "No self-employment loan under a similar government scheme in the last 5 years",
+      "ta": "கடந்த 5 ஆண்டுகளில் இதுபோன்ற அரசுத் திட்டத்தில் சுயதொழில் கடன் பெறவில்லை",
+      "hi": "पिछले 5 वर्षों में ऐसी सरकारी योजना से स्वरोज़गार ऋण नहीं लिया"
+    },
+    {
+      "en": "Only one member per family (husband, wife, unmarried children)",
+      "ta": "ஒரு குடும்பத்திற்கு ஒருவர் மட்டும்",
+      "hi": "प्रति परिवार केवल एक सदस्य"
+    }
+  ],
+  "required_documents": [
+    "aadhaar",
+    "bank_passbook",
+    "ration_card"
+  ],
+  "apply_at": {
+    "en": "A Common Service Centre (pmvishwakarma.gov.in)",
+    "ta": "பொது சேவை மையம் (pmvishwakarma.gov.in)",
+    "hi": "कॉमन सर्विस सेंटर (pmvishwakarma.gov.in)"
+  },
+  "source_url": "https://pmvishwakarma.gov.in/",
+  "examples": [
+    {
+      "name": "potter",
+      "profile": {
+        "occupation": "artisan",
+        "traditional_trade": "potter",
+        "age": 40,
+        "family_govt_job": false
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "farmer",
+      "profile": {
+        "occupation": "farmer"
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "trade"
+      ]
+    },
+    {
+      "name": "artisan unknown trade",
+      "profile": {
+        "occupation": "artisan",
+        "age": 40,
+        "family_govt_job": false
+      },
+      "expect": "needs_info",
+      "missing": [
+        "traditional_trade"
+      ]
+    },
+    {
+      "name": "fails age",
+      "profile": {
+        "occupation": "artisan",
+        "traditional_trade": "potter",
+        "age": 17,
+        "family_govt_job": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "age"
+      ]
+    },
+    {
+      "name": "fails no_govt_job",
+      "profile": {
+        "occupation": "artisan",
+        "traditional_trade": "potter",
+        "age": 40,
+        "family_govt_job": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_govt_job"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "conflicts_with": []
+}

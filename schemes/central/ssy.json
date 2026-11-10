@@ -1,0 +1,81 @@
+{
+  "id": "ssy",
+  "level": "central",
+  "state": null,
+  "category": "savings",
+  "benefit_weight": 1500,
+  "name": {
+    "en": "Sukanya Samriddhi Yojana",
+    "ta": "செல்வமகள் சேமிப்புத் திட்டம் (சுகன்யா சம்ருத்தி)",
+    "hi": "सुकन्या समृद्धि योजना"
+  },
+  "benefit": {
+    "en": "High-interest, tax-free savings account for a daughter's education and future",
+    "ta": "மகளின் கல்வி மற்றும் எதிர்காலத்திற்கான அதிக வட்டி, வரியில்லா சேமிப்புக் கணக்கு",
+    "hi": "बेटी की पढ़ाई और भविष्य के लिए ऊँचे ब्याज वाला कर-मुक्त बचत खाता"
+  },
+  "clauses": [
+    {
+      "id": "daughter",
+      "rule": {
+        ">=": [
+          {
+            "var": "girl_children_under_10"
+          },
+          1
+        ]
+      },
+      "text": {
+        "en": "Parent or guardian of a daughter under 10 years",
+        "ta": "10 வயதுக்குட்பட்ட மகளின் பெற்றோர் / பாதுகாவலர்",
+        "hi": "10 वर्ष से कम आयु की बेटी के माता-पिता / अभिभावक"
+      },
+      "source": {
+        "title": "PIB — Sukanya Samriddhi Account (Sept 2024)",
+        "url": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2024/sep/doc2024926402101.pdf",
+        "locator": "Eligibility",
+        "quality": "official"
+      }
+    }
+  ],
+  "office_checks": [
+    {
+      "en": "Up to two daughters per family (more for twins / triplets)",
+      "ta": "ஒரு குடும்பத்திற்கு இரண்டு மகள்கள் வரை (இரட்டையர்களுக்கு விலக்கு)",
+      "hi": "प्रति परिवार दो बेटियों तक (जुड़वाँ के लिए छूट)"
+    }
+  ],
+  "required_documents": [
+    "birth_certificate_child",
+    "aadhaar",
+    "residence_certificate"
+  ],
+  "apply_at": {
+    "en": "Post office or an authorised bank",
+    "ta": "அஞ்சலகம் அல்லது அங்கீகரிக்கப்பட்ட வங்கி",
+    "hi": "डाकघर या अधिकृत बैंक"
+  },
+  "source_url": "https://www.indiapost.gov.in/",
+  "examples": [
+    {
+      "name": "one daughter",
+      "profile": {
+        "girl_children_under_10": 1
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "none",
+      "profile": {
+        "girl_children_under_10": 0
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "daughter"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "conflicts_with": []
+}

@@ -1,0 +1,122 @@
+{
+  "id": "ignoaps",
+  "level": "central",
+  "state": null,
+  "category": "pension",
+  "benefit_weight": 2400,
+  "name": {
+    "en": "Indira Gandhi National Old Age Pension Scheme",
+    "ta": "இந்திரா காந்தி தேசிய முதியோர் ஓய்வூதியத் திட்டம்",
+    "hi": "इंदिरा गांधी राष्ट्रीय वृद्धावस्था पेंशन योजना"
+  },
+  "benefit": {
+    "en": "Monthly pension: central share ₹200 (₹500 from age 80), plus the state's own top-up",
+    "ta": "மாதாந்திர ஓய்வூதியம்: மத்திய பங்கு ₹200 (80 வயது முதல் ₹500), மேலும் மாநில அரசின் கூடுதல் தொகை",
+    "hi": "मासिक पेंशन: केंद्रीय हिस्सा ₹200 (80 वर्ष से ₹500), साथ में राज्य का अतिरिक्त अंश"
+  },
+  "clauses": [
+    {
+      "id": "age",
+      "rule": {
+        ">=": [
+          {
+            "var": "age"
+          },
+          60
+        ]
+      },
+      "text": {
+        "en": "Aged 60 or above",
+        "ta": "60 வயது அல்லது அதற்கு மேல்",
+        "hi": "60 वर्ष या अधिक आयु"
+      },
+      "source": {
+        "title": "NSAP Guidelines (Ministry of Rural Development)",
+        "url": "https://socialwelfare.tripura.gov.in/sites/default/files/NSAP%20Guidline%20II.pdf",
+        "locator": "Chapter II, para 2.3",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "bpl",
+      "rule": {
+        "==": [
+          {
+            "var": "bpl_card"
+          },
+          true
+        ]
+      },
+      "text": {
+        "en": "Household is below the poverty line (PHH / AAY ration card)",
+        "ta": "குடும்பம் வறுமைக் கோட்டுக்குக் கீழ் (PHH / AAY குடும்ப அட்டை)",
+        "hi": "परिवार गरीबी रेखा से नीचे (BPL / अंत्योदय कार्ड)"
+      },
+      "source": {
+        "title": "NSAP Guidelines (Ministry of Rural Development)",
+        "url": "https://socialwelfare.tripura.gov.in/sites/default/files/NSAP%20Guidline%20II.pdf",
+        "locator": "Chapter II, para 2.3",
+        "quality": "official"
+      }
+    }
+  ],
+  "required_documents": [
+    "aadhaar",
+    "age_proof",
+    "ration_card",
+    "bank_passbook",
+    "residence_certificate"
+  ],
+  "apply_at": {
+    "en": "Taluk office (Social Security Tahsildar) or an e-Sevai centre",
+    "ta": "வட்டாட்சியர் அலுவலகம் (சமூகப் பாதுகாப்புத் திட்ட வட்டாட்சியர்) அல்லது இ-சேவை மையம்",
+    "hi": "तालुका कार्यालय या ई-सेवा केंद्र"
+  },
+  "source_url": "https://nsap.nic.in/",
+  "examples": [
+    {
+      "name": "lakshmi",
+      "profile": {
+        "age": 62,
+        "bpl_card": true
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "too young",
+      "profile": {
+        "age": 59,
+        "bpl_card": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "age"
+      ]
+    },
+    {
+      "name": "not bpl",
+      "profile": {
+        "age": 70,
+        "bpl_card": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "bpl"
+      ]
+    },
+    {
+      "name": "unknown bpl",
+      "profile": {
+        "age": 65
+      },
+      "expect": "needs_info",
+      "missing": [
+        "bpl_card"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "office_checks": [],
+  "conflicts_with": []
+}

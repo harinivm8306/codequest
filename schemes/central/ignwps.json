@@ -1,0 +1,185 @@
+{
+  "id": "ignwps",
+  "level": "central",
+  "state": null,
+  "category": "pension",
+  "benefit_weight": 3600,
+  "name": {
+    "en": "Indira Gandhi National Widow Pension Scheme",
+    "ta": "இந்திரா காந்தி தேசிய விதவை ஓய்வூதியத் திட்டம்",
+    "hi": "इंदिरा गांधी राष्ट्रीय विधवा पेंशन योजना"
+  },
+  "benefit": {
+    "en": "Monthly pension: central share ₹300 (₹500 from age 80), plus the state's top-up",
+    "ta": "மாதாந்திர ஓய்வூதியம்: மத்திய பங்கு ₹300 (80 வயது முதல் ₹500), மேலும் மாநில அரசின் கூடுதல் தொகை",
+    "hi": "मासिक पेंशन: केंद्रीय हिस्सा ₹300 (80 वर्ष से ₹500), साथ में राज्य का अंश"
+  },
+  "clauses": [
+    {
+      "id": "widow",
+      "rule": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "gender"
+              },
+              "female"
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "marital_status"
+              },
+              "widowed"
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Is a widow",
+        "ta": "விதவை",
+        "hi": "विधवा हैं"
+      },
+      "source": {
+        "title": "NSAP Guidelines (Ministry of Rural Development)",
+        "url": "https://socialwelfare.tripura.gov.in/sites/default/files/NSAP%20Guidline%20II.pdf",
+        "locator": "Chapter II, para 2.3",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "age",
+      "rule": {
+        ">=": [
+          {
+            "var": "age"
+          },
+          40
+        ]
+      },
+      "text": {
+        "en": "Aged 40 or above",
+        "ta": "40 வயது அல்லது அதற்கு மேல்",
+        "hi": "40 वर्ष या अधिक आयु"
+      },
+      "source": {
+        "title": "NSAP Guidelines (Ministry of Rural Development)",
+        "url": "https://socialwelfare.tripura.gov.in/sites/default/files/NSAP%20Guidline%20II.pdf",
+        "locator": "Chapter II, para 2.3",
+        "quality": "official"
+      }
+    },
+    {
+      "id": "bpl",
+      "rule": {
+        "==": [
+          {
+            "var": "bpl_card"
+          },
+          true
+        ]
+      },
+      "text": {
+        "en": "Household is below the poverty line (PHH / AAY ration card)",
+        "ta": "குடும்பம் வறுமைக் கோட்டுக்குக் கீழ் (PHH / AAY குடும்ப அட்டை)",
+        "hi": "परिवार गरीबी रेखा से नीचे (BPL / अंत्योदय कार्ड)"
+      },
+      "source": {
+        "title": "NSAP Guidelines (Ministry of Rural Development)",
+        "url": "https://socialwelfare.tripura.gov.in/sites/default/files/NSAP%20Guidline%20II.pdf",
+        "locator": "Chapter II, para 2.3",
+        "quality": "official"
+      }
+    }
+  ],
+  "office_checks": [
+    {
+      "en": "Husband's death certificate should carry your name",
+      "ta": "கணவரின் இறப்புச் சான்றிதழில் உங்கள் பெயர் இருக்க வேண்டும்",
+      "hi": "पति के मृत्यु प्रमाणपत्र पर आपका नाम होना चाहिए"
+    }
+  ],
+  "required_documents": [
+    "aadhaar",
+    "age_proof",
+    "death_certificate_spouse",
+    "ration_card",
+    "bank_passbook",
+    "residence_certificate"
+  ],
+  "apply_at": {
+    "en": "Taluk office (Social Security Tahsildar) or an e-Sevai centre",
+    "ta": "வட்டாட்சியர் அலுவலகம் (சமூகப் பாதுகாப்புத் திட்ட வட்டாட்சியர்) அல்லது இ-சேவை மையம்",
+    "hi": "तालुका कार्यालय या ई-सेवा केंद्र"
+  },
+  "source_url": "https://nsap.nic.in/",
+  "examples": [
+    {
+      "name": "lakshmi",
+      "profile": {
+        "age": 62,
+        "gender": "female",
+        "marital_status": "widowed",
+        "bpl_card": true
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "married",
+      "profile": {
+        "age": 45,
+        "gender": "female",
+        "marital_status": "married",
+        "bpl_card": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "widow"
+      ]
+    },
+    {
+      "name": "young widow",
+      "profile": {
+        "age": 35,
+        "gender": "female",
+        "marital_status": "widowed",
+        "bpl_card": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "age"
+      ]
+    },
+    {
+      "name": "widower",
+      "profile": {
+        "age": 50,
+        "gender": "male",
+        "marital_status": "widowed",
+        "bpl_card": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "widow"
+      ]
+    },
+    {
+      "name": "fails bpl",
+      "profile": {
+        "age": 62,
+        "gender": "female",
+        "marital_status": "widowed",
+        "bpl_card": false
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "bpl"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "conflicts_with": []
+}

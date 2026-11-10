@@ -1,0 +1,207 @@
+{
+  "id": "pmmvy",
+  "level": "central",
+  "state": null,
+  "category": "maternity",
+  "benefit_weight": 5000,
+  "name": {
+    "en": "Pradhan Mantri Matru Vandana Yojana",
+    "ta": "பிரதம மந்திரி மாத்ரு வந்தனா திட்டம்",
+    "hi": "प्रधानमंत्री मातृ वंदना योजना"
+  },
+  "benefit": {
+    "en": "₹5,000 for the first child (two instalments); ₹6,000 if the second child is a girl",
+    "ta": "முதல் குழந்தைக்கு ₹5,000 (இரு தவணை); இரண்டாவது பெண் குழந்தைக்கு ₹6,000",
+    "hi": "पहले बच्चे के लिए ₹5,000 (दो किस्त); दूसरी संतान बेटी हो तो ₹6,000"
+  },
+  "clauses": [
+    {
+      "id": "pregnant",
+      "rule": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "gender"
+              },
+              "female"
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "pregnant"
+              },
+              true
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Is pregnant now",
+        "ta": "தற்போது கர்ப்பமாக உள்ளார்",
+        "hi": "अभी गर्भवती हैं"
+      },
+      "source": {
+        "title": "PMMVY eligibility summary (Dec 2025)",
+        "url": "https://www.outlookmoney.com/news/pradhan-mantri-matru-vandana-yojana-govt-offers-rs-5000-for-first-time-mothers-how-to-apply",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "no_govt_job",
+      "rule": {
+        "==": [
+          {
+            "var": "govt_job"
+          },
+          false
+        ]
+      },
+      "text": {
+        "en": "Not in regular government / PSU employment",
+        "ta": "அரசு / பொதுத்துறை நிரந்தரப் பணியில் இல்லை",
+        "hi": "नियमित सरकारी / PSU नौकरी में नहीं"
+      },
+      "source": {
+        "title": "PMMVY eligibility summary (Dec 2025)",
+        "url": "https://www.outlookmoney.com/news/pradhan-mantri-matru-vandana-yojana-govt-offers-rs-5000-for-first-time-mothers-how-to-apply",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "category",
+      "rule": {
+        "or": [
+          {
+            "in": [
+              {
+                "var": "caste_category"
+              },
+              [
+                "SC",
+                "ST"
+              ]
+            ]
+          },
+          {
+            ">=": [
+              {
+                "var": "disability_percent"
+              },
+              40
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "bpl_card"
+              },
+              true
+            ]
+          },
+          {
+            "<": [
+              {
+                "var": "annual_family_income"
+              },
+              800000
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "SC / ST, or 40%+ disability, or BPL card, or family income below ₹8 lakh",
+        "ta": "SC / ST, அல்லது 40%+ மாற்றுத்திறன், அல்லது BPL அட்டை, அல்லது குடும்ப வருமானம் ₹8 லட்சத்திற்குக் கீழ்",
+        "hi": "SC / ST, या 40%+ विकलांगता, या BPL कार्ड, या पारिवारिक आय ₹8 लाख से कम"
+      },
+      "source": {
+        "title": "PMMVY eligibility summary (Dec 2025)",
+        "url": "https://www.outlookmoney.com/news/pradhan-mantri-matru-vandana-yojana-govt-offers-rs-5000-for-first-time-mothers-how-to-apply",
+        "locator": "Eligibility",
+        "quality": "secondary"
+      }
+    }
+  ],
+  "office_checks": [
+    {
+      "en": "Only for the first two living children; the second only if it is a girl",
+      "ta": "முதல் இரண்டு குழந்தைகளுக்கு மட்டும்; இரண்டாவது பெண் குழந்தையாக இருந்தால் மட்டும்",
+      "hi": "केवल पहली दो जीवित संतानों के लिए; दूसरी केवल बेटी होने पर"
+    },
+    {
+      "en": "Register the pregnancy at the Anganwadi centre",
+      "ta": "அங்கன்வாடி மையத்தில் கர்ப்பத்தைப் பதிவு செய்யவும்",
+      "hi": "आंगनवाड़ी केंद्र पर गर्भावस्था का पंजीकरण कराएँ"
+    }
+  ],
+  "required_documents": [
+    "aadhaar",
+    "mcp_card",
+    "bank_passbook"
+  ],
+  "apply_at": {
+    "en": "Anganwadi centre or pmmvy.wcd.gov.in",
+    "ta": "அங்கன்வாடி மையம் அல்லது pmmvy.wcd.gov.in",
+    "hi": "आंगनवाड़ी केंद्र या pmmvy.wcd.gov.in"
+  },
+  "source_url": "https://pmmvy.wcd.gov.in/",
+  "examples": [
+    {
+      "name": "eligible",
+      "profile": {
+        "gender": "female",
+        "pregnant": true,
+        "govt_job": false,
+        "annual_family_income": 200000
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "govt",
+      "profile": {
+        "gender": "female",
+        "pregnant": true,
+        "govt_job": true
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "no_govt_job"
+      ]
+    },
+    {
+      "name": "rich",
+      "profile": {
+        "gender": "female",
+        "pregnant": true,
+        "govt_job": false,
+        "caste_category": "GEN",
+        "disability_percent": 0,
+        "bpl_card": false,
+        "annual_family_income": 900000
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "category"
+      ]
+    },
+    {
+      "name": "fails pregnant",
+      "profile": {
+        "gender": "female",
+        "pregnant": false,
+        "govt_job": false,
+        "annual_family_income": 200000
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "pregnant"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "conflicts_with": []
+}

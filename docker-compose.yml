@@ -1,0 +1,27 @@
+# Local stack: PostgreSQL + the app (backend serving the PWA) on http://localhost:8000
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: sathi
+      POSTGRES_PASSWORD: sathi-local-only
+      POSTGRES_DB: schemesathi
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sathi"]
+      interval: 5s
+      retries: 10
+
+  app:
+    build: .
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://sathi:sathi-local-only@db:5432/schemesathi
+    ports: ["8000:8000"]
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

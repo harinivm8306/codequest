@@ -1,0 +1,171 @@
+{
+  "id": "pms_sc",
+  "level": "central",
+  "state": null,
+  "category": "education",
+  "benefit_weight": 15000,
+  "name": {
+    "en": "Post-Matric Scholarship for SC students",
+    "ta": "ஆதிதிராவிட மாணவர்களுக்கான மெட்ரிக் பிந்தைய கல்வி உதவித்தொகை",
+    "hi": "अनुसूचित जाति छात्रों के लिए पोस्ट-मैट्रिक छात्रवृत्ति"
+  },
+  "benefit": {
+    "en": "Course fees and a maintenance allowance for study after Class 10",
+    "ta": "10ஆம் வகுப்புக்குப் பிந்தைய படிப்புக்கான கட்டணம் மற்றும் பராமரிப்புத் தொகை",
+    "hi": "10वीं के बाद की पढ़ाई के लिए फीस और भरण-पोषण भत्ता"
+  },
+  "clauses": [
+    {
+      "id": "sc",
+      "rule": {
+        "==": [
+          {
+            "var": "caste_category"
+          },
+          "SC"
+        ]
+      },
+      "text": {
+        "en": "Belongs to a Scheduled Caste",
+        "ta": "பட்டியல் சாதியைச் சேர்ந்தவர்",
+        "hi": "अनुसूचित जाति से हैं"
+      },
+      "source": {
+        "title": "Post-Matric Scholarship for SC — current income limit",
+        "url": "https://news.careers360.com/post-matric-scholarship-pms-for-sc-rules-change-msje-course-fee-cap-4-5-lakh-income-limit-next-year-social-justice-and-empowerment/amp",
+        "locator": "Income limit ₹2.5 lakh (a raise to ₹4.5 lakh is proposed, not in force)",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "post_matric",
+      "rule": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "occupation"
+              },
+              "student"
+            ]
+          },
+          {
+            "in": [
+              {
+                "var": "course_level"
+              },
+              [
+                "class_11_12",
+                "iti",
+                "diploma",
+                "ug",
+                "pg"
+              ]
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Studying after Class 10 (11th, ITI, diploma, degree or PG)",
+        "ta": "10ஆம் வகுப்புக்குப் பின் படிக்கிறார் (11ஆம் வகுப்பு, ஐடிஐ, பட்டயம், பட்டம் அல்லது முதுநிலை)",
+        "hi": "10वीं के बाद पढ़ रहे हैं (11वीं, ITI, डिप्लोमा, स्नातक या PG)"
+      },
+      "source": {
+        "title": "Post-Matric Scholarship for SC — current income limit",
+        "url": "https://news.careers360.com/post-matric-scholarship-pms-for-sc-rules-change-msje-course-fee-cap-4-5-lakh-income-limit-next-year-social-justice-and-empowerment/amp",
+        "locator": "Income limit ₹2.5 lakh (a raise to ₹4.5 lakh is proposed, not in force)",
+        "quality": "secondary"
+      }
+    },
+    {
+      "id": "income",
+      "rule": {
+        "<=": [
+          {
+            "var": "annual_family_income"
+          },
+          250000
+        ]
+      },
+      "text": {
+        "en": "Family income up to ₹2.5 lakh a year",
+        "ta": "ஆண்டுக் குடும்ப வருமானம் ₹2.5 லட்சம் வரை",
+        "hi": "पारिवारिक आय ₹2.5 लाख प्रति वर्ष तक"
+      },
+      "source": {
+        "title": "Post-Matric Scholarship for SC — current income limit",
+        "url": "https://news.careers360.com/post-matric-scholarship-pms-for-sc-rules-change-msje-course-fee-cap-4-5-lakh-income-limit-next-year-social-justice-and-empowerment/amp",
+        "locator": "Income limit ₹2.5 lakh (a raise to ₹4.5 lakh is proposed, not in force)",
+        "quality": "secondary"
+      }
+    }
+  ],
+  "required_documents": [
+    "community_certificate",
+    "income_certificate",
+    "aadhaar",
+    "bank_passbook",
+    "admission_proof"
+  ],
+  "apply_at": {
+    "en": "Through your college, on the state scholarship portal",
+    "ta": "உங்கள் கல்லூரி வழியாக மாநில கல்வி உதவித்தொகை இணையதளத்தில்",
+    "hi": "अपने कॉलेज के माध्यम से राज्य छात्रवृत्ति पोर्टल पर"
+  },
+  "source_url": "https://socialjustice.gov.in/",
+  "examples": [
+    {
+      "name": "arun-sc",
+      "profile": {
+        "caste_category": "SC",
+        "occupation": "student",
+        "course_level": "ug",
+        "annual_family_income": 200000
+      },
+      "expect": "eligible"
+    },
+    {
+      "name": "school",
+      "profile": {
+        "caste_category": "SC",
+        "occupation": "student",
+        "course_level": "school",
+        "annual_family_income": 100000
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "post_matric"
+      ]
+    },
+    {
+      "name": "income",
+      "profile": {
+        "caste_category": "SC",
+        "occupation": "student",
+        "course_level": "ug",
+        "annual_family_income": 500000
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "income"
+      ]
+    },
+    {
+      "name": "fails sc",
+      "profile": {
+        "caste_category": "OBC",
+        "occupation": "student",
+        "course_level": "ug",
+        "annual_family_income": 200000
+      },
+      "expect": "not_eligible",
+      "failed": [
+        "sc"
+      ]
+    }
+  ],
+  "version": 1,
+  "verified_on": "2026-10-27",
+  "office_checks": [],
+  "conflicts_with": []
+}
